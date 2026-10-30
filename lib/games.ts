@@ -41,60 +41,60 @@ export type ArcadeGame = {
 export const games: ArcadeGame[] = [
   {
     id: "game-1",
-    slug: "game-1",
-    displayName: "Game 1",
-    title: "Game 1",
-    tagline: "An arcade cabinet is warming up.",
-    description: "Cabinet 01 is currently in development. Check back after the next service round for high-score space action.",
+    slug: "plants-vs-zombies",
+    displayName: "Plants vs. Zombies",
+    title: "Plants vs. Zombies",
+    tagline: "Defend your lawn against zombies with sun-powered plants!",
+    description: "Classic strategy tower defense. Plant sunflowers and peashooters, collect sun, and hold off the zombie horde.",
     asset: {
-      icon: "👾",
-      accent: "pink",
+      icon: "🌻",
+      accent: "lime",
       marqueeLabel: "GAME 1",
     },
-    accent: "pink",
+    accent: "lime",
     marqueeLabel: "GAME 1",
-    icon: "👾",
-    category: "Space Shooter",
-    route: "/games/game-1",
-    status: "coming_soon",
+    icon: "🌻",
+    category: "Tower Defense",
+    route: "/games/plants-vs-zombies",
+    status: "available",
     entryFee: 0,
     reward: {
       min: 10,
       max: 50,
-      description: "10-50 tickets per run",
+      description: "5 tickets per zombie kill",
     },
-    ticketRate: "10-50 tickets per run",
+    ticketRate: "5 tickets per zombie kill",
   },
   {
     id: "game-2",
-    slug: "game-2",
-    displayName: "Game 2",
-    title: "Game 2",
-    tagline: "Insert creativity to begin.",
-    description: "Cabinet 02 is wired for fast-twitch reflexes. Stay tuned for when the neon grid goes live.",
+    slug: "zombie-nyan-cat",
+    displayName: "Zombie Nyan Cat",
+    title: "Zombie Nyan Cat",
+    tagline: "Guide the undead feline through the toxic void and eat brains!",
+    description: "Retro pixel-art endless runner. Leap across the graveyard, collect brains, avoid holy water, and ride the corrupted rainbow.",
     asset: {
-      icon: "⚡",
+      icon: "🐱",
       accent: "cyan",
       marqueeLabel: "GAME 2",
     },
     accent: "cyan",
     marqueeLabel: "GAME 2",
-    icon: "⚡",
-    category: "Reflex Action",
-    route: "/games/game-2",
-    status: "coming_soon",
+    icon: "🐱",
+    category: "Endless Runner",
+    route: "/games/zombie-nyan-cat",
+    status: "available",
     entryFee: 0,
     reward: {
       min: 5,
-      max: 30,
-      description: "5-30 tickets per wave",
+      max: 40,
+      description: "1 ticket per 5 brains",
     },
-    ticketRate: "5-30 tickets per wave",
+    ticketRate: "1 ticket per 5 brains",
   },
   {
     id: "game-3",
     slug: "game-3",
-    displayName: "Game 3",
+    displayName: "Grave Shift",
     title: "Game 3 (Grave Shift)",
     tagline: "Run the cursed forest before the moon goes out.",
     description: "A newly undead hero has one shift left: outrun the fog, stomp the wisps, and reach the exit gate before dawn.",
@@ -120,6 +120,12 @@ export const games: ArcadeGame[] = [
 ];
 
 export function getGame(slug: string): ArcadeGame | undefined {
+  if (slug === "game-1" || slug === "plants-vs-zombies") {
+    return games.find((g) => g.id === "game-1" || g.slug === "plants-vs-zombies") || games[0];
+  }
+  if (slug === "game-2" || slug === "zombie-nyan-cat") {
+    return games.find((g) => g.id === "game-2" || g.slug === "zombie-nyan-cat") || games[1];
+  }
   return games.find((game) => game.slug === slug || game.id === slug);
 }
 

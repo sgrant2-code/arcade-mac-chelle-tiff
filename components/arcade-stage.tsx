@@ -35,11 +35,11 @@ export function ArcadeStage() {
 
           {/* Interactive Overlay Hotspots */}
           <div className="arcade-hotspots-layer" aria-label="Interactive arcade floor elements">
-            {/* HOTSPOT 1: Cabinet 1 */}
+            {/* HOTSPOT 1: Cabinet 1 (Plants vs. Zombies) */}
             {game1 && (
               <button
                 type="button"
-                className={`hotspot hotspot--game-1`}
+                className="hotspot hotspot--game-1"
                 onClick={() => handleGameClick(game1.slug)}
                 aria-label={`Cabinet 1: ${game1.displayName}`}
               >
@@ -90,11 +90,11 @@ export function ArcadeStage() {
               </span>
             </Link>
 
-            {/* HOTSPOT 4: Cabinet 2 */}
+            {/* HOTSPOT 4: Cabinet 2 (Zombie Nyan Cat) */}
             {game2 && (
               <button
                 type="button"
-                className={`hotspot hotspot--game-2`}
+                className="hotspot hotspot--game-2"
                 onClick={() => handleGameClick(game2.slug)}
                 aria-label={`Cabinet 2: ${game2.displayName}`}
               >
@@ -112,11 +112,11 @@ export function ArcadeStage() {
               </button>
             )}
 
-            {/* HOTSPOT 5: Cabinet 3 */}
+            {/* HOTSPOT 5: Cabinet 3 (Grave Shift) */}
             {game3 && (
               <button
                 type="button"
-                className={`hotspot hotspot--game-3`}
+                className="hotspot hotspot--game-3"
                 onClick={() => handleGameClick(game3.slug)}
                 aria-label={`Cabinet 3: ${game3.displayName}`}
               >
