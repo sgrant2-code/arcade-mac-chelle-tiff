@@ -5,35 +5,48 @@ export default function GamesDirectoryPage() {
   return (
     <section className="games-directory">
       <div className="directory-hero">
-        <p className="eyebrow">NEON ARCADE ROSTER · LEVEL 01</p>
+        <p className="eyebrow">NEON ARCADE ROSTER · CENTRAL REGISTRY</p>
         <h1>ALL ARCADE CABINETS</h1>
         <p className="hero-description">
-          Step right up to any cabinet on the floor. Every run you play awards arcade tickets
-          that you can exchange at the prize counter!
+          Step right up to any cabinet on the floor. Every registered game connects to the
+          shared ticket wallet and records high scores!
         </p>
       </div>
 
       <div className="cabinets-showcase-grid">
         {games.map((game) => (
-          <div key={game.slug} className={`cabinet-box cabinet-box--${game.accent}`}>
+          <div key={game.id} className={`cabinet-box cabinet-box--${game.asset.accent}`}>
             <div className="cabinet-box__marquee">
-              <span className="box-marquee-label">{game.marqueeLabel}</span>
-              <span className="box-icon">{game.icon}</span>
+              <span className="box-marquee-label">{game.asset.marqueeLabel}</span>
+              <span className="box-icon">{game.asset.icon}</span>
             </div>
 
             <div className="cabinet-box__body">
-              <span className="cabinet-category">{game.category}</span>
-              <h2>{game.title}</h2>
+              <div className="cabinet-meta-line">
+                <span className="cabinet-category">{game.category}</span>
+                <span className={`status-pill status-pill--${game.status}`}>
+                  {game.status === "available" ? "ONLINE" : game.status === "coming_soon" ? "COMING SOON" : "MAINTENANCE"}
+                </span>
+              </div>
+
+              <h2>{game.displayName}</h2>
               <p>{game.description}</p>
-              <div className="ticket-rate-tag">
-                <span>🎟️ Payout:</span>
-                <strong>{game.ticketRate}</strong>
+
+              <div className="cabinet-economics">
+                <div className="economic-item">
+                  <span className="economic-label">Entry Fee:</span>
+                  <span className="economic-val">{game.entryFee === 0 ? "FREE PLAY" : `🎟️ ${game.entryFee}`}</span>
+                </div>
+                <div className="economic-item">
+                  <span className="economic-label">Reward:</span>
+                  <span className="economic-val economic-val--reward">{game.reward.description}</span>
+                </div>
               </div>
             </div>
 
             <div className="cabinet-box__action">
-              <Link href={`/games/${game.slug}`} className="play-cabinet-btn">
-                PLAY CABINET NOW →
+              <Link href={game.route} className="play-cabinet-btn">
+                {game.status === "available" ? "PLAY CABINET NOW →" : "VIEW CABINET →"}
               </Link>
             </div>
           </div>
