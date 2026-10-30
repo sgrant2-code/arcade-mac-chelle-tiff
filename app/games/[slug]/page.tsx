@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { GraveShiftGame } from "@/components/grave-shift-game";
 import { games, getGame } from "@/lib/games";
 import { PlantsVsZombiesGame } from "@/components/plants-vs-zombies";
 import { ZombieNyanCatGame } from "@/components/zombie-nyan-cat";
@@ -48,6 +49,10 @@ export default async function GamePage({ params }: { params: Promise<{ slug: str
         <ZombieNyanCatGame />
       </section>
     );
+  }
+
+  if (game.slug === "game-3") {
+    return <GraveShiftGame />;
   }
 
   return (

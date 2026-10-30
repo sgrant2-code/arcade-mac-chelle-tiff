@@ -23,8 +23,8 @@ export const games: ArcadeGame[] = [
   },
   {
     slug: "game-3",
-    title: "<game 3>",
-    description: "A new high score is waiting.",
+    title: "Grave Shift",
+    description: "Run the cursed forest before the moon goes out.",
     accent: "lime",
   },
 ];
