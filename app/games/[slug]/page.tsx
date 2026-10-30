@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { GraveShiftGame } from "@/components/grave-shift-game";
 import { games, getGame } from "@/lib/games";
 
 export function generateStaticParams() {
@@ -11,6 +12,10 @@ export default async function GamePage({ params }: { params: Promise<{ slug: str
   const game = getGame(slug);
 
   if (!game) notFound();
+
+  if (game.slug === "game-3") {
+    return <GraveShiftGame />;
+  }
 
   return (
     <section className={`coming-soon coming-soon--${game.accent}`}>
