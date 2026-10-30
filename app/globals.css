@@ -1932,3 +1932,638 @@ kbd { display: inline-block; padding: .12rem .25rem; border: 1px solid #667a78; 
 @media (prefers-reduced-motion: reduce) {
   .soul-lantern, .specter { animation: none; }
 }
+
+
+/* =========================================================
+   10. SHARED PLATFORM FOUNDATION (PHASE 1 EXPANSIONS)
+   ========================================================= */
+
+/* Coming Soon & Placeholder Cabinet Details */
+.coming-soon-badge {
+  display: inline-block;
+  font-family: "Press Start 2P", monospace;
+  font-size: 0.72rem;
+  padding: 0.45rem 1rem;
+  border-radius: 4px;
+  background: rgba(255, 60, 191, 0.18);
+  border: 1px solid currentColor;
+  color: currentColor;
+  margin: 1.25rem 0 0.75rem;
+  box-shadow: 0 0 15px currentColor;
+}
+
+.marquee-indicator {
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+}
+
+.cabinet-screen-icon {
+  font-size: 2.4rem;
+  display: block;
+  margin-top: 0.5rem;
+}
+
+.cabinet-specs-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.spec-item strong {
+  color: var(--cream);
+  margin-right: 0.35rem;
+}
+
+/* Status Pills in Game Selection */
+.cabinet-meta-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.6rem;
+}
+
+.status-pill {
+  font-family: "Press Start 2P", monospace;
+  font-size: 0.48rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  letter-spacing: 0.05em;
+}
+
+.status-pill--available {
+  background: rgba(188, 255, 60, 0.15);
+  color: var(--lime);
+  border: 1px solid var(--lime);
+  box-shadow: 0 0 8px rgba(188, 255, 60, 0.3);
+}
+
+.status-pill--coming_soon {
+  background: rgba(255, 60, 191, 0.15);
+  color: var(--pink-neon);
+  border: 1px solid var(--pink-neon);
+}
+
+.status-pill--disabled {
+  background: rgba(166, 155, 189, 0.15);
+  color: var(--muted);
+  border: 1px solid var(--muted);
+}
+
+.cabinet-economics {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 0.75rem;
+  border-radius: 6px;
+  margin: 1rem 0 1.25rem;
+}
+
+.economic-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.78rem;
+}
+
+.economic-label {
+  color: var(--muted);
+}
+
+.economic-val {
+  font-family: "Press Start 2P", monospace;
+  font-size: 0.65rem;
+  color: var(--cream);
+}
+
+.economic-val--reward {
+  color: var(--lime);
+}
+
+/* Prize Shelf Page */
+.prize-shelf-showcase {
+  margin-top: 1.5rem;
+}
+
+.empty-shelf-card {
+  text-align: center;
+  background: var(--panel-card);
+  border: 2px dashed var(--purple);
+  border-radius: 12px;
+  padding: 3.5rem 1.5rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.empty-shelf-icon {
+  font-size: 3.5rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.empty-shelf-card h2 {
+  font-family: "Press Start 2P", monospace;
+  font-size: clamp(0.95rem, 2vw, 1.25rem);
+  color: var(--cream);
+  margin: 0 0 1rem;
+}
+
+.empty-shelf-card p {
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  max-width: 520px;
+  margin: 0 auto 2rem;
+}
+
+.empty-shelf-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.claimed-shelf-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.shelf-trophy-card {
+  position: relative;
+  background: var(--panel-card);
+  border: 3px solid currentColor;
+  border-radius: 10px;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(255, 255, 255, 0.03);
+}
+
+.shelf-trophy-card--gold { color: var(--gold); }
+.shelf-trophy-card--green { color: var(--lime); }
+.shelf-trophy-card--pink { color: var(--pink-neon); }
+.shelf-trophy-card--purple { color: #d154ff; }
+
+.trophy-qty-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-family: "Press Start 2P", monospace;
+  font-size: 0.52rem;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  border: 1px solid currentColor;
+}
+
+.trophy-icon {
+  font-size: 3.5rem;
+  margin: 0.8rem 0;
+}
+
+.trophy-name {
+  font-family: "Press Start 2P", monospace;
+  font-size: 0.85rem;
+  color: var(--cream);
+  margin: 0 0 0.35rem;
+}
+
+.trophy-category {
+  font-family: "Press Start 2P", monospace;
+  font-size: 0.5rem;
+  color: var(--cyan);
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.trophy-desc {
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Wallet Page */
+.wallet-page,
+.leaderboard-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2.5rem 1.25rem 5rem;
+}
+
+.wallet-hero-card {
+  background: var(--panel-card);
+  border: 3px solid var(--gold);
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 3rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7), 0 0 30px rgba(255, 210, 63, 0.25);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 2rem;
+}
+
+.wallet-balance-display {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.wallet-icon-large {
+  font-size: 3.5rem;
+}
+
+.balance-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.balance-label {
+  font-family: "Press Start 2P", monospace;
+  font-size: 0.62rem;
+  color: var(--muted);
+}
+
+.balance-number {
+  font-family: "Press Start 2P", monospace;
+  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+  color: var(--gold);
+  text-shadow: 0 0 15px rgba(255, 210, 63, 0.5);
+}
+
+.wallet-quick-stats {
+  display: flex;
+  gap: 2rem;
+  border-left: 2px solid rgba(255, 255, 255, 0.1);
+  border-right: 2px solid rgba(255, 255, 255, 0.1);
+  padding: 0 2rem;
+}
+
+.wallet-stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-family: "Press Start 2P", monospace;
+}
+
+.stat-label {
+  font-size: 0.48rem;
+  color: var(--muted);
+}
+
+.stat-val {
+  font-size: 0.95rem;
+  color: var(--cream);
+}
+
+.stat-val--lime {
+  color: var(--lime);
+}
+
+.wallet-shortcuts {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* Leaderboard Page */
+.leaderboard-table-container {
+  background: var(--panel-card);
+  border: 3px solid var(--cyan);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7), 0 0 30px rgba(38, 247, 255, 0.25);
+  margin-bottom: 2.5rem;
+}
+
+.leaderboard-table-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-bottom: 2px solid rgba(38, 247, 255, 0.3);
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.trophy-lead-icon {
+  font-size: 2rem;
+}
+
+.leaderboard-table-header h2 {
+  font-family: "Press Start 2P", monospace;
+  font-size: 1.15rem;
+  color: var(--cream);
+  margin: 0;
+}
+
+.leaderboard-cta-card {
+  margin-top: 2.5rem;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.leaderboard-cta-card h3 {
+  font-family: "Press Start 2P", monospace;
+  font-size: 0.85rem;
+  color: var(--gold);
+  margin: 0 0 0.5rem;
+}
+
+.leaderboard-cta-card p {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin: 0 0 1.25rem;
+}
+
+.leaderboard-games-row {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.mini-cabinet-link {
+  font-family: "Press Start 2P", monospace;
+  font-size: 0.62rem;
+  padding: 0.6rem 1rem;
+  background: rgba(139, 45, 252, 0.2);
+  border: 1px solid var(--purple);
+  border-radius: 6px;
+  color: var(--cream);
+  transition: all 0.15s ease;
+}
+
+.mini-cabinet-link:hover {
+  background: var(--purple);
+  box-shadow: 0 0 15px var(--purple);
+}
+
+/* Arcade Cabinet Shell / Contract Container */
+.arcade-cabinet-shell {
+  background: #090317;
+  border: 4px solid currentColor;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.85), 0 0 35px currentColor;
+  margin-bottom: 2rem;
+}
+
+.arcade-cabinet-shell--pink { color: var(--pink-neon); }
+.arcade-cabinet-shell--cyan { color: var(--cyan); }
+.arcade-cabinet-shell--lime { color: var(--lime); }
+
+.cabinet-shell-hud {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1.25rem;
+  background: #05010d;
+  border-bottom: 2px solid currentColor;
+}
+
+.shell-hud-left,
+.shell-hud-right {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.shell-back-btn {
+  font-family: "Press Start 2P", monospace;
+  font-size: 0.58rem;
+  padding: 0.35rem 0.6rem;
+  border: 1px solid currentColor;
+  border-radius: 4px;
+}
+
+.shell-title-tag {
+  font-family: "Press Start 2P", monospace;
+  font-size: 0.65rem;
+  color: var(--gold);
+}
+
+.shell-score-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  font-family: "Press Start 2P", monospace;
+}
+
+.shell-score-label {
+  font-size: 0.45rem;
+  color: var(--muted);
+}
+
+.shell-score-val {
+  font-size: 0.95rem;
+  color: var(--cream);
+}
+
+.shell-control-btn {
+  font-family: "Press Start 2P", monospace;
+  font-size: 0.6rem;
+  padding: 0.35rem 0.6rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  color: var(--cream);
+}
+
+.cabinet-shell-screen {
+  min-height: 480px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #020108;
+}
+
+.cabinet-shell-start-card {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  max-width: 500px;
+}
+
+.shell-game-icon {
+  font-size: 3.5rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.cabinet-shell-start-card h2 {
+  font-family: "Press Start 2P", monospace;
+  font-size: 1.3rem;
+  color: var(--cream);
+  margin: 0 0 0.6rem;
+}
+
+.shell-tagline {
+  font-family: "Press Start 2P", monospace;
+  font-size: 0.68rem;
+  color: currentColor;
+  margin: 0 0 1rem;
+}
+
+.shell-desc {
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.shell-rules-box {
+  display: flex;
+  justify-content: space-around;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.rule-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-family: "Press Start 2P", monospace;
+  font-size: 0.52rem;
+}
+
+.rule-label {
+  color: var(--muted);
+}
+
+.rule-val {
+  color: var(--cream);
+}
+
+.rule-val--lime {
+  color: var(--lime);
+}
+
+.shell-insert-coin-btn {
+  font-family: "Press Start 2P", monospace;
+  font-size: 0.78rem;
+  padding: 1rem 2rem;
+  background: var(--lime);
+  color: #0b1c02;
+  border-radius: 8px;
+  font-weight: bold;
+  box-shadow: 0 6px 0 #4f8008, 0 0 25px var(--lime);
+  transition: transform 0.12s ease;
+}
+
+.shell-insert-coin-btn:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 #4f8008;
+}
+
+.cabinet-shell-result-card {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  max-width: 480px;
+}
+
+.result-symbol {
+  font-size: 3.5rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.cabinet-shell-result-card h2 {
+  font-family: "Press Start 2P", monospace;
+  font-size: 1.15rem;
+  margin: 0 0 0.8rem;
+}
+
+.cabinet-shell-result-card--win h2 {
+  color: var(--lime);
+}
+
+.cabinet-shell-result-card--loss h2 {
+  color: #ff3c5f;
+}
+
+.result-score-text {
+  font-family: "Press Start 2P", monospace;
+  font-size: 0.85rem;
+  color: var(--cream);
+  margin-bottom: 1.25rem;
+}
+
+.result-tickets-payout {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: "Press Start 2P", monospace;
+  font-size: 0.78rem;
+  color: var(--gold);
+  background: rgba(255, 210, 63, 0.12);
+  border: 1px solid var(--gold);
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  margin-bottom: 2rem;
+}
+
+.result-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.shell-action-btn {
+  font-family: "Press Start 2P", monospace;
+  font-size: 0.68rem;
+  padding: 0.85rem 1.25rem;
+  border-radius: 6px;
+  display: inline-block;
+}
+
+.shell-action-btn--primary {
+  background: var(--lime);
+  color: #0b1a03;
+  font-weight: bold;
+}
+
+.shell-action-btn--secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--cream);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 850px) {
+  .wallet-hero-card {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .wallet-balance-display {
+    justify-content: center;
+  }
+
+  .wallet-quick-stats {
+    border-left: none;
+    border-right: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1rem 0;
+    justify-content: center;
+  }
+
+  .claimed-shelf-grid {
+    grid-template-columns: 1fr;
+  }
+}

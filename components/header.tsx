@@ -6,7 +6,7 @@ import { useTicketWallet } from "@/components/ticket-wallet";
 import { playClickSound } from "@/lib/sound";
 
 export function Header() {
-  const { tickets, openPrizeShop, openTicketBooth, openLeaderboard } = useTicketWallet();
+  const { tickets } = useTicketWallet();
   const pathname = usePathname();
 
   return (
@@ -28,52 +28,43 @@ export function Header() {
         <nav className="retro-header__nav" aria-label="Arcade navigation">
           <Link
             href="/games"
-            className={`nav-btn nav-btn--games ${pathname === "/games" ? "nav-btn--active" : ""}`}
+            className={`nav-btn nav-btn--games ${pathname.startsWith("/games") ? "nav-btn--active" : ""}`}
             onClick={playClickSound}
           >
             <span className="nav-icon" aria-hidden="true">🏠</span>
             <span>GAMES</span>
           </Link>
 
-          <button
-            type="button"
-            className="nav-btn nav-btn--leaderboard"
-            onClick={() => {
-              playClickSound();
-              openLeaderboard();
-            }}
+          <Link
+            href="/leaderboard"
+            className={`nav-btn nav-btn--leaderboard ${pathname === "/leaderboard" ? "nav-btn--active" : ""}`}
+            onClick={playClickSound}
           >
             <span className="nav-icon" aria-hidden="true">🏆</span>
             <span>LEADERBOARD</span>
-          </button>
+          </Link>
 
-          <button
-            type="button"
-            className={`nav-btn nav-btn--prizes ${pathname === "/prizes" ? "nav-btn--active" : ""}`}
-            onClick={() => {
-              playClickSound();
-              openPrizeShop();
-            }}
+          <Link
+            href="/prize-counter"
+            className={`nav-btn nav-btn--prizes ${pathname === "/prize-counter" || pathname === "/prize-shelf" ? "nav-btn--active" : ""}`}
+            onClick={playClickSound}
           >
             <span className="nav-icon" aria-hidden="true">🎁</span>
             <span>PRIZE SHOP</span>
-          </button>
+          </Link>
 
-          {/* Ticket Counter Pill */}
-          <button
-            type="button"
+          {/* Ticket Counter Pill linked to Wallet */}
+          <Link
+            href="/wallet"
             className="ticket-wallet-pill"
-            onClick={() => {
-              playClickSound();
-              openTicketBooth();
-            }}
-            title="Click to Buy / Refill Tickets"
-            aria-label={`${tickets} tickets. Click to buy more`}
+            onClick={playClickSound}
+            title="View Ticket Wallet & Refill"
+            aria-label={`${tickets} tickets in wallet`}
           >
             <span className="ticket-pill-icon" aria-hidden="true">🎟️</span>
             <span className="ticket-pill-count">{tickets}</span>
             <span className="ticket-pill-plus" aria-hidden="true">+</span>
-          </button>
+          </Link>
         </nav>
       </div>
     </header>

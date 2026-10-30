@@ -3,18 +3,20 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useTicketWallet } from "@/components/ticket-wallet";
-import { games } from "@/lib/games";
+import { games, getGame } from "@/lib/games";
 import { playClickSound } from "@/lib/sound";
 
 export function ArcadeStage() {
   const router = useRouter();
-  const { openPrizeShop, openTicketBooth } = useTicketWallet();
 
   const handleGameClick = (slug: string) => {
     playClickSound();
     router.push(`/games/${slug}`);
   };
+
+  const game1 = getGame("game-1") ?? games[0];
+  const game2 = getGame("game-2") ?? games[1];
+  const game3 = getGame("game-3") ?? games[2];
 
   return (
     <div className="arcade-scene-container">
@@ -33,32 +35,33 @@ export function ArcadeStage() {
 
           {/* Interactive Overlay Hotspots */}
           <div className="arcade-hotspots-layer" aria-label="Interactive arcade floor elements">
-            {/* HOTSPOT 1: Cabinet 1 (Game 1 - Space Defender) */}
-            <button
-              type="button"
-              className="hotspot hotspot--game-1"
-              onClick={() => handleGameClick("game-1")}
-              aria-label="Play Game 1: Space Defender cabinet"
-            >
-              <span className="hotspot-beacon">
-                <span className="beacon-dot" />
-                <span className="beacon-ping" />
-              </span>
-              <span className="hotspot-tooltip">
-                <span className="tooltip-tag">👾 GAME 1</span>
-                <strong>Space Defender</strong>
-                <span className="tooltip-action">Click to Play →</span>
-              </span>
-            </button>
+            {/* HOTSPOT 1: Cabinet 1 */}
+            {game1 && (
+              <button
+                type="button"
+                className={`hotspot hotspot--game-1`}
+                onClick={() => handleGameClick(game1.slug)}
+                aria-label={`Cabinet 1: ${game1.displayName}`}
+              >
+                <span className="hotspot-beacon">
+                  <span className={`beacon-dot beacon-dot--${game1.asset.accent}`} />
+                  <span className={`beacon-ping beacon-ping--${game1.asset.accent}`} />
+                </span>
+                <span className="hotspot-tooltip">
+                  <span className="tooltip-tag">{game1.asset.icon} {game1.asset.marqueeLabel}</span>
+                  <strong>{game1.displayName}</strong>
+                  <span className="tooltip-action">
+                    {game1.status === "coming_soon" ? "Coming Soon →" : "Click to Play →"}
+                  </span>
+                </span>
+              </button>
+            )}
 
             {/* HOTSPOT 2: Central Prize Counter & Shelves */}
-            <button
-              type="button"
+            <Link
+              href="/prize-counter"
               className="hotspot hotspot--prize-booth"
-              onClick={() => {
-                playClickSound();
-                openPrizeShop();
-              }}
+              onClick={playClickSound}
               aria-label="Open Prize Shop counter"
             >
               <span className="hotspot-beacon">
@@ -70,61 +73,66 @@ export function ArcadeStage() {
                 <strong>Redeem Tickets</strong>
                 <span className="tooltip-action">Browse Shelves →</span>
               </span>
-            </button>
+            </Link>
 
             {/* HOTSPOT 3: "GET TICKETS >" Button */}
-            <button
-              type="button"
+            <Link
+              href="/wallet"
               className="hotspot hotspot--get-tickets-btn"
-              onClick={() => {
-                playClickSound();
-                openTicketBooth();
-              }}
-              aria-label="Get and buy tickets at the cashier"
+              onClick={playClickSound}
+              aria-label="Get and buy tickets at the cashier wallet"
             >
               <span className="hotspot-glow-border" />
               <span className="hotspot-tooltip hotspot-tooltip--top">
                 <span className="tooltip-tag">🎟️ TICKET EXCHANGE</span>
-                <strong>Buy & Refill Tickets</strong>
-                <span className="tooltip-action">Open Cashier →</span>
+                <strong>Ticket Wallet</strong>
+                <span className="tooltip-action">View & Refill →</span>
               </span>
-            </button>
+            </Link>
 
-            {/* HOTSPOT 4: Cabinet 2 (Game 2 - Neon Surge) */}
-            <button
-              type="button"
-              className="hotspot hotspot--game-2"
-              onClick={() => handleGameClick("game-2")}
-              aria-label="Play Game 2: Neon Surge cabinet"
-            >
-              <span className="hotspot-beacon">
-                <span className="beacon-dot beacon-dot--cyan" />
-                <span className="beacon-ping beacon-ping--cyan" />
-              </span>
-              <span className="hotspot-tooltip">
-                <span className="tooltip-tag">⚡ GAME 2</span>
-                <strong>Neon Surge</strong>
-                <span className="tooltip-action">Click to Play →</span>
-              </span>
-            </button>
+            {/* HOTSPOT 4: Cabinet 2 */}
+            {game2 && (
+              <button
+                type="button"
+                className={`hotspot hotspot--game-2`}
+                onClick={() => handleGameClick(game2.slug)}
+                aria-label={`Cabinet 2: ${game2.displayName}`}
+              >
+                <span className="hotspot-beacon">
+                  <span className={`beacon-dot beacon-dot--${game2.asset.accent}`} />
+                  <span className={`beacon-ping beacon-ping--${game2.asset.accent}`} />
+                </span>
+                <span className="hotspot-tooltip">
+                  <span className="tooltip-tag">{game2.asset.icon} {game2.asset.marqueeLabel}</span>
+                  <strong>{game2.displayName}</strong>
+                  <span className="tooltip-action">
+                    {game2.status === "coming_soon" ? "Coming Soon →" : "Click to Play →"}
+                  </span>
+                </span>
+              </button>
+            )}
 
-            {/* HOTSPOT 5: Cabinet 3 (Game 3 - Grave Shift) */}
-            <button
-              type="button"
-              className="hotspot hotspot--game-3"
-              onClick={() => handleGameClick("game-3")}
-              aria-label="Play Game 3: Grave Shift cabinet"
-            >
-              <span className="hotspot-beacon">
-                <span className="beacon-dot beacon-dot--lime" />
-                <span className="beacon-ping beacon-ping--lime" />
-              </span>
-              <span className="hotspot-tooltip">
-                <span className="tooltip-tag">🪦 GAME 3</span>
-                <strong>Grave Shift</strong>
-                <span className="tooltip-action">Click to Play →</span>
-              </span>
-            </button>
+            {/* HOTSPOT 5: Cabinet 3 */}
+            {game3 && (
+              <button
+                type="button"
+                className={`hotspot hotspot--game-3`}
+                onClick={() => handleGameClick(game3.slug)}
+                aria-label={`Cabinet 3: ${game3.displayName}`}
+              >
+                <span className="hotspot-beacon">
+                  <span className={`beacon-dot beacon-dot--${game3.asset.accent}`} />
+                  <span className={`beacon-ping beacon-ping--${game3.asset.accent}`} />
+                </span>
+                <span className="hotspot-tooltip">
+                  <span className="tooltip-tag">{game3.asset.icon} {game3.asset.marqueeLabel}</span>
+                  <strong>{game3.displayName}</strong>
+                  <span className="tooltip-action">
+                    {game3.status === "coming_soon" ? "Coming Soon →" : "Click to Play →"}
+                  </span>
+                </span>
+              </button>
+            )}
           </div>
         </div>
 
@@ -135,14 +143,14 @@ export function ArcadeStage() {
             <span>ARCADE STATUS: ALL SYSTEMS ONLINE</span>
           </div>
           <div className="status-hints">
-            <span>✨ Tap any cabinet to jump into the game</span>
+            <span>✨ Tap any cabinet to view route</span>
             <span className="bullet">·</span>
-            <span>🎁 Tap the counter to open the Prize Shop</span>
+            <span>🎁 Tap the counter for the Prize Shop</span>
           </div>
         </div>
       </div>
 
-      {/* Accessible Interactive Floor Quick Deck */}
+      {/* Shared Floor Deck Reading Directly from Registry */}
       <section className="arcade-floor-deck" aria-label="Arcade stations">
         <div className="deck-header">
           <p className="eyebrow">CHOOSE YOUR DESTINATION</p>
@@ -150,59 +158,37 @@ export function ArcadeStage() {
         </div>
 
         <div className="floor-quick-grid">
-          {/* Game 1 Card */}
-          <Link
-            href="/games/game-1"
-            className="deck-card deck-card--pink"
-            onClick={playClickSound}
-          >
-            <div className="deck-card__badge">CABINET 01</div>
-            <span className="deck-card__icon">👾</span>
-            <h3>Space Defender</h3>
-            <p>Retro vertical space invader shooter. Blast alien armadas for tickets.</p>
-            <span className="deck-card__btn">Play Cabinet →</span>
-          </Link>
+          {/* Dynamically mapped from shared games registry */}
+          {games.map((g) => (
+            <Link
+              key={g.id}
+              href={g.route}
+              className={`deck-card deck-card--${g.asset.accent}`}
+              onClick={playClickSound}
+            >
+              <div className="deck-card__badge">
+                {g.asset.marqueeLabel} · {g.status === "available" ? "ONLINE" : "COMING SOON"}
+              </div>
+              <span className="deck-card__icon">{g.asset.icon}</span>
+              <h3>{g.displayName}</h3>
+              <p>{g.description}</p>
+              <span className="deck-card__btn">
+                {g.status === "available" ? "Enter Cabinet →" : "View Cabinet →"}
+              </span>
+            </Link>
+          ))}
 
           {/* Prize Shop Card */}
-          <button
-            type="button"
+          <Link
+            href="/prize-counter"
             className="deck-card deck-card--gold"
-            onClick={() => {
-              playClickSound();
-              openPrizeShop();
-            }}
+            onClick={playClickSound}
           >
             <div className="deck-card__badge deck-card__badge--gold">PRIZE BOOTH</div>
             <span className="deck-card__icon">🎁</span>
-            <h3>Prize Shop Counter</h3>
+            <h3>Prize Counter</h3>
             <p>Meet Mittens at the counter and exchange tickets for plushies and trophies.</p>
             <span className="deck-card__btn">Open Prize Shop →</span>
-          </button>
-
-          {/* Game 2 Card */}
-          <Link
-            href="/games/game-2"
-            className="deck-card deck-card--cyan"
-            onClick={playClickSound}
-          >
-            <div className="deck-card__badge">CABINET 02</div>
-            <span className="deck-card__icon">⚡</span>
-            <h3>Neon Surge</h3>
-            <p>High speed cyber lightning reflex test. Zap glowing overloads.</p>
-            <span className="deck-card__btn">Play Cabinet →</span>
-          </Link>
-
-          {/* Game 3 Card */}
-          <Link
-            href="/games/game-3"
-            className="deck-card deck-card--lime"
-            onClick={playClickSound}
-          >
-            <div className="deck-card__badge">CABINET 03</div>
-            <span className="deck-card__icon">🪦</span>
-            <h3>Grave Shift</h3>
-            <p>Run the cursed forest before the moon goes out. Outrun the fog and banish specters.</p>
-            <span className="deck-card__btn">Play Cabinet →</span>
           </Link>
         </div>
       </section>
