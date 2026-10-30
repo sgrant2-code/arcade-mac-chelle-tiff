@@ -6,7 +6,13 @@ import { PlantsVsZombiesGame } from "@/components/plants-vs-zombies";
 import { ZombieNyanCatGame } from "@/components/zombie-nyan-cat";
 
 export function generateStaticParams() {
-  return games.map(({ slug }) => ({ slug }));
+  return [
+    { slug: "plants-vs-zombies" },
+    { slug: "zombie-nyan-cat" },
+    { slug: "game-1" },
+    { slug: "game-2" },
+    { slug: "game-3" },
+  ];
 }
 
 export default async function GamePage({ params }: { params: Promise<{ slug: string }> }) {
@@ -15,55 +21,75 @@ export default async function GamePage({ params }: { params: Promise<{ slug: str
 
   if (!game) notFound();
 
-  if (slug === "plants-vs-zombies") {
-    return (
-      <section className="arcade-floor" style={{ padding: "2rem 0 4rem" }}>
-        <div style={{ marginBottom: "1.5rem", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1rem" }}>
-          <div>
-            <p className="eyebrow" style={{ margin: "0 0 0.5rem" }}>CABINET ACTIVE · LEVEL 01</p>
-            <h1 style={{ fontSize: "1.8rem" }}>{game.title}</h1>
-          </div>
-          <Link className="back-link" style={{ marginTop: 0 }} href="/">
-            ← Back to the arcade floor
-          </Link>
-        </div>
-
-        <PlantsVsZombiesGame />
-      </section>
-    );
-  }
-
-  if (slug === "zombie-nyan-cat") {
-    return (
-      <section className="arcade-floor" style={{ padding: "2rem 0 4rem" }}>
-        <div style={{ marginBottom: "1.5rem", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1rem" }}>
-          <div>
-            <p className="eyebrow" style={{ margin: "0 0 0.5rem" }}>CABINET ACTIVE · LEVEL 02</p>
-            <h1 style={{ fontSize: "1.8rem" }}>{game.title}</h1>
-          </div>
-          <Link className="back-link" style={{ marginTop: 0 }} href="/">
-            ← Back to the arcade floor
-          </Link>
-        </div>
-
-        <ZombieNyanCatGame />
-      </section>
-    );
-  }
-
-  if (game.slug === "game-3") {
+  if (slug === "game-3") {
     return <GraveShiftGame />;
   }
 
   return (
-    <section className={`coming-soon coming-soon--${game.accent}`}>
-      <p className="eyebrow">CABINET STATUS · {game.title}</p>
-      <div className="coming-soon__frame">
-        <span className="pixel-orb" aria-hidden="true" />
-        <h1>Coming soon</h1>
-        <p>This cabinet is still being wired up. Check back after the next service round.</p>
+    <section className={`cabinet-subpage cabinet-subpage--${game.accent}`}>
+      {/* Top Banner Navigation */}
+      <div className="cabinet-nav-bar">
+        <Link className="back-link" href="/">
+          ← Back to Arcade Floor
+        </Link>
+        <div className="cabinet-selector-pills">
+          {games.map((g) => (
+            <Link
+              key={g.slug}
+              href={`/games/${g.slug}`}
+              className={`cabinet-selector-pill ${
+                g.slug === slug ||
+                (slug === "game-1" && g.slug === "plants-vs-zombies") ||
+                (slug === "game-2" && g.slug === "zombie-nyan-cat")
+                  ? "cabinet-selector-pill--active"
+                  : ""
+              }`}
+            >
+              {g.marqueeLabel}
+            </Link>
+          ))}
+        </div>
       </div>
-      <Link className="back-link" href="/">← Back to the arcade floor</Link>
+
+      {/* Arcade Cabinet Frame */}
+      <div className="arcade-cabinet-frame">
+        {/* Glowing Marquee Top */}
+        <div className="cabinet-marquee">
+          <span className="marquee-sparkle">✦</span>
+          <span className="marquee-label">{game.marqueeLabel}</span>
+          <h1 className="marquee-title">{game.title}</h1>
+          <span className="marquee-sparkle">✦</span>
+        </div>
+
+        {/* Subtitle / Ticket rate */}
+        <div className="cabinet-sub-marquee">
+          <span>{game.tagline}</span>
+          <span className="rate-badge">🎟️ {game.ticketRate}</span>
+        </div>
+
+        {/* Playable Game Simulator */}
+        <div className="cabinet-screen-slot">
+          {(slug === "plants-vs-zombies" || slug === "game-1") && <PlantsVsZombiesGame />}
+          {(slug === "zombie-nyan-cat" || slug === "game-2") && <ZombieNyanCatGame />}
+        </div>
+      </div>
+
+      {/* Cabinet Details & Manual */}
+      <div className="cabinet-manual-card">
+        <h3>HOW TO PLAY · {game.title.toUpperCase()}</h3>
+        <p>{game.description}</p>
+        <div className="manual-tips">
+          <div className="tip-item">
+            <strong>🎮 Cabinet Category:</strong> {game.category}
+          </div>
+          <div className="tip-item">
+            <strong>🎟️ Ticket Rewards:</strong> Automatic payout straight to your wallet counter!
+          </div>
+          <div className="tip-item">
+            <strong>🏆 High Score:</strong> Saved locally across all sessions.
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
