@@ -1,0 +1,113 @@
+:root {
+  --ink: #090514;
+  --panel: #130c29;
+  --purple: #7b2cff;
+  --pink: #ff3cbf;
+  --cyan: #26f7ff;
+  --lime: #bcff3c;
+  --cream: #fff6dc;
+  --muted: #b9afd2;
+}
+
+* { box-sizing: border-box; }
+
+html { background: var(--ink); }
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  color: var(--cream);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(123, 44, 255, 0.23), transparent 36rem),
+    linear-gradient(135deg, rgba(38, 247, 255, 0.03) 25%, transparent 25%) 0 0 / 26px 26px,
+    linear-gradient(225deg, rgba(255, 60, 191, 0.03) 25%, transparent 25%) 0 0 / 26px 26px,
+    var(--ink);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+a { color: inherit; text-decoration: none; }
+
+.site-header {
+  position: sticky;
+  z-index: 10;
+  top: 0;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 1.25rem;
+  min-height: 82px;
+  padding: 0.8rem clamp(1rem, 4vw, 4rem);
+  border-bottom: 2px solid rgba(38, 247, 255, 0.5);
+  background: rgba(9, 5, 20, 0.9);
+  backdrop-filter: blur(12px);
+}
+
+.arcade-logo { display: grid; gap: 0.25rem; font-family: "Press Start 2P", monospace; font-size: clamp(0.56rem, 1.4vw, 0.78rem); line-height: 1.45; color: var(--cyan); text-shadow: 0 0 12px rgba(38, 247, 255, 0.7); }
+.arcade-logo span:last-child { color: var(--pink); }
+nav { display: flex; gap: clamp(0.6rem, 2vw, 1.5rem); font-size: 0.78rem; color: var(--muted); }
+nav a:hover, nav a:focus-visible { color: var(--cyan); }
+.ticket-counter { justify-self: end; display: flex; align-items: center; gap: 0.45rem; padding: 0.6rem 0.75rem; border: 1px solid var(--lime); color: var(--lime); font-family: "Press Start 2P", monospace; font-size: 0.62rem; box-shadow: inset 0 0 14px rgba(188, 255, 60, 0.12), 0 0 13px rgba(188, 255, 60, 0.12); }
+.ticket-icon { color: var(--pink); font-size: 1.15rem; text-shadow: 0 0 10px var(--pink); }
+.ticket-label { color: var(--cream); font-family: Arial, sans-serif; font-size: 0.72rem; }
+
+main { min-height: calc(100vh - 82px); }
+.arcade-floor, .prize-shop, .coming-soon { width: min(1120px, calc(100% - 2rem)); margin: 0 auto; padding: clamp(3.5rem, 8vw, 7rem) 0 5rem; }
+.hero-copy { max-width: 50rem; }
+.eyebrow { margin: 0 0 1.25rem; color: var(--cyan); font-family: "Press Start 2P", monospace; font-size: clamp(0.58rem, 1.25vw, 0.75rem); letter-spacing: 0.06em; line-height: 1.8; }
+h1 { margin: 0; color: var(--cream); font-family: "Press Start 2P", monospace; font-size: clamp(1.5rem, 4.5vw, 3.3rem); line-height: 1.45; text-shadow: 4px 4px 0 var(--purple), 0 0 28px rgba(255, 60, 191, 0.32); }
+.hero-description, .shop-intro { max-width: 40rem; margin: 1.75rem 0 0; color: var(--muted); font-size: 1.06rem; line-height: 1.75; }
+
+.floor-lights { display: flex; gap: 1rem; align-items: center; margin: clamp(2.5rem, 5vw, 4rem) 0 2rem; overflow: hidden; }
+.floor-lights::before, .floor-lights::after { content: ""; height: 2px; flex: 1; min-width: 1rem; background: linear-gradient(90deg, transparent, var(--pink)); box-shadow: 0 0 12px var(--pink); }
+.floor-lights::after { background: linear-gradient(90deg, var(--cyan), transparent); box-shadow: 0 0 12px var(--cyan); }
+.floor-lights span { width: 9px; height: 9px; flex: 0 0 auto; background: var(--lime); box-shadow: 0 0 12px var(--lime); transform: rotate(45deg); }
+
+.game-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
+.game-card { position: relative; display: flex; min-height: 405px; flex-direction: column; padding: 1.25rem; overflow: hidden; border: 2px solid currentColor; background: linear-gradient(155deg, rgba(255,255,255,0.1), transparent 30%), var(--panel); box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.42), inset 0 0 38px rgba(255,255,255,0.04); transition: transform 160ms ease, box-shadow 160ms ease; }
+.game-card:hover, .game-card:focus-visible { transform: translate(-4px, -6px); box-shadow: 13px 14px 0 rgba(0, 0, 0, 0.42), 0 0 25px currentColor; }
+.game-card--pink { color: var(--pink); }
+.game-card--cyan { color: var(--cyan); }
+.game-card--lime { color: var(--lime); }
+.cabinet-screen { display: grid; min-height: 155px; place-items: center; align-content: center; gap: 1rem; border: 8px solid currentColor; outline: 4px solid #030108; background: radial-gradient(circle, currentColor -100%, #07030f 65%); box-shadow: inset 0 0 20px currentColor; font-family: "Press Start 2P", monospace; font-size: 0.7rem; color: var(--cream); }
+.pixel-orb { display: inline-block; width: 24px; height: 24px; background: currentColor; box-shadow: 7px 0 currentColor, -7px 0 currentColor, 0 7px currentColor, 0 -7px currentColor, 0 0 17px currentColor; }
+.cabinet-controls { display: flex; align-items: end; gap: 0.8rem; min-height: 72px; padding: 0.8rem 1rem; border: 2px solid currentColor; border-top: 0; transform: perspective(100px) rotateX(-7deg); }
+.joystick { width: 17px; height: 17px; margin-right: auto; border-radius: 50%; background: var(--cream); box-shadow: 0 -18px 0 -4px currentColor, 0 -18px 0 -2px #08030e; }
+.button { width: 18px; height: 18px; border-radius: 50%; background: currentColor; box-shadow: inset -3px -3px 0 rgba(0,0,0,0.35); }
+.game-card__copy { margin-top: auto; padding-top: 1.75rem; }
+.game-card__title { margin: 0 0 0.8rem; color: var(--cream); font-family: "Press Start 2P", monospace; font-size: 0.85rem; line-height: 1.7; }
+.game-card__copy p:last-child { margin: 0; color: var(--muted); font-size: 0.95rem; line-height: 1.55; }
+.play-prompt { margin-top: 1.4rem; font-family: "Press Start 2P", monospace; font-size: 0.59rem; color: currentColor; }
+
+.coming-soon { text-align: center; }
+.coming-soon .eyebrow { color: currentColor; }
+.coming-soon--pink { color: var(--pink); }
+.coming-soon--cyan { color: var(--cyan); }
+.coming-soon--lime { color: var(--lime); }
+.coming-soon__frame { display: grid; justify-items: center; gap: 2rem; max-width: 700px; margin: 2rem auto; padding: clamp(2rem, 6vw, 4.5rem) 1.5rem; border: 3px solid currentColor; background: rgba(19, 12, 41, 0.9); box-shadow: 0 0 32px color-mix(in srgb, currentColor 25%, transparent), inset 0 0 40px rgba(255,255,255,0.03); }
+.coming-soon__frame h1 { font-size: clamp(1.45rem, 4vw, 2.7rem); }
+.coming-soon__frame p { max-width: 32rem; margin: 0; color: var(--muted); line-height: 1.7; }
+.back-link { display: inline-block; margin-top: 1.25rem; color: var(--cream); font-family: "Press Start 2P", monospace; font-size: 0.66rem; line-height: 1.7; }
+.back-link:hover, .back-link:focus-visible { color: var(--cyan); }
+
+.prize-shop { text-align: center; }
+.prize-shop .shop-intro { margin-right: auto; margin-left: auto; }
+.prize-shelf { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; max-width: 850px; margin: 3rem auto 1rem; padding: 1rem 1rem 1.7rem; border-bottom: 14px solid var(--purple); background: rgba(123, 44, 255, 0.18); }
+.prize-placeholder { display: grid; min-height: 210px; align-content: center; gap: 1rem; padding: 1rem; border: 2px dashed var(--pink); background: rgba(9, 5, 20, 0.66); }
+.prize-placeholder span { color: var(--lime); font-family: "Press Start 2P", monospace; font-size: 2.2rem; text-shadow: 0 0 18px var(--lime); }
+.prize-placeholder p { margin: 0; color: var(--cream); font-family: "Press Start 2P", monospace; font-size: 0.6rem; line-height: 1.8; }
+.prize-placeholder small { color: var(--muted); font-size: 0.62rem; }
+
+@media (max-width: 760px) {
+  .site-header { grid-template-columns: 1fr auto; }
+  nav { grid-column: 1 / -1; grid-row: 2; justify-content: center; padding-bottom: 0.25rem; }
+  .game-grid, .prize-shelf { grid-template-columns: 1fr; }
+  .game-card { min-height: 340px; }
+  .prize-placeholder { min-height: 160px; }
+}
+
+@media (max-width: 430px) {
+  .site-header { gap: 0.7rem; padding-right: 0.75rem; padding-left: 0.75rem; }
+  .arcade-logo { font-size: 0.48rem; }
+  .ticket-label { display: none; }
+  .ticket-counter { padding: 0.55rem; }
+}
