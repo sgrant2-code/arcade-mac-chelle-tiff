@@ -35,14 +35,14 @@ export const games: ArcadeGame[] = [
   },
   {
     slug: "game-3",
-    title: "Pixel Matrix",
-    tagline: "Memorize and repeat the glowing 4-tile neon sequence!",
-    description: "Electrifying memory puzzle. Follow the flashing color patterns and climb the leaderboard rounds for big prizes.",
+    title: "Grave Shift",
+    tagline: "Run the cursed forest before the moon goes out!",
+    description: "Run the cursed forest before the moon goes out. Dash, jump, and collect lanterns to vanquish specters and earn tickets.",
     accent: "lime",
     marqueeLabel: "GAME 3",
-    icon: "🟪",
-    category: "Memory Puzzle",
-    ticketRate: "15 tickets per round",
+    icon: "🪦",
+    category: "Action Platformer",
+    ticketRate: "25 tickets on clear",
   },
 ];
 

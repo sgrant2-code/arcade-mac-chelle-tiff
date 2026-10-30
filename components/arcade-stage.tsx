@@ -108,20 +108,20 @@ export function ArcadeStage() {
               </span>
             </button>
 
-            {/* HOTSPOT 5: Cabinet 3 (Game 3 - Pixel Matrix) */}
+            {/* HOTSPOT 5: Cabinet 3 (Game 3 - Grave Shift) */}
             <button
               type="button"
               className="hotspot hotspot--game-3"
               onClick={() => handleGameClick("game-3")}
-              aria-label="Play Game 3: Pixel Matrix cabinet"
+              aria-label="Play Game 3: Grave Shift cabinet"
             >
               <span className="hotspot-beacon">
                 <span className="beacon-dot beacon-dot--lime" />
                 <span className="beacon-ping beacon-ping--lime" />
               </span>
               <span className="hotspot-tooltip">
-                <span className="tooltip-tag">🟪 GAME 3</span>
-                <strong>Pixel Matrix</strong>
+                <span className="tooltip-tag">🪦 GAME 3</span>
+                <strong>Grave Shift</strong>
                 <span className="tooltip-action">Click to Play →</span>
               </span>
             </button>
@@ -199,9 +199,9 @@ export function ArcadeStage() {
             onClick={playClickSound}
           >
             <div className="deck-card__badge">CABINET 03</div>
-            <span className="deck-card__icon">🟪</span>
-            <h3>Pixel Matrix</h3>
-            <p>Simon-style 4-tile neon color puzzle. Climb rounds and win tickets.</p>
+            <span className="deck-card__icon">🪦</span>
+            <h3>Grave Shift</h3>
+            <p>Run the cursed forest before the moon goes out. Outrun the fog and banish specters.</p>
             <span className="deck-card__btn">Play Cabinet →</span>
           </Link>
         </div>

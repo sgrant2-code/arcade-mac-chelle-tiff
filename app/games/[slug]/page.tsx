@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { GraveShiftGame } from "@/components/grave-shift-game";
 import { games, getGame } from "@/lib/games";
 import { SpaceDefenderGame } from "@/components/games/space-defender-game";
 import { NeonSurgeGame } from "@/components/games/neon-surge-game";
@@ -14,6 +15,10 @@ export default async function GamePage({ params }: { params: Promise<{ slug: str
   const game = getGame(slug);
 
   if (!game) notFound();
+
+  if (game.slug === "game-3") {
+    return <GraveShiftGame />;
+  }
 
   return (
     <section className={`cabinet-subpage cabinet-subpage--${game.accent}`}>
