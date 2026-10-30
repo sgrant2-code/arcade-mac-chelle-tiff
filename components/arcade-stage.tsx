@@ -33,20 +33,20 @@ export function ArcadeStage() {
 
           {/* Interactive Overlay Hotspots */}
           <div className="arcade-hotspots-layer" aria-label="Interactive arcade floor elements">
-            {/* HOTSPOT 1: Cabinet 1 (Game 1 - Space Defender) */}
+            {/* HOTSPOT 1: Cabinet 1 (Game 1 - Plants vs. Zombies) */}
             <button
               type="button"
               className="hotspot hotspot--game-1"
-              onClick={() => handleGameClick("game-1")}
-              aria-label="Play Game 1: Space Defender cabinet"
+              onClick={() => handleGameClick("plants-vs-zombies")}
+              aria-label="Play Game 1: Plants vs. Zombies cabinet"
             >
               <span className="hotspot-beacon">
                 <span className="beacon-dot" />
                 <span className="beacon-ping" />
               </span>
               <span className="hotspot-tooltip">
-                <span className="tooltip-tag">👾 GAME 1</span>
-                <strong>Space Defender</strong>
+                <span className="tooltip-tag">🌻 GAME 1</span>
+                <strong>Plants vs. Zombies</strong>
                 <span className="tooltip-action">Click to Play →</span>
               </span>
             </button>
@@ -90,20 +90,20 @@ export function ArcadeStage() {
               </span>
             </button>
 
-            {/* HOTSPOT 4: Cabinet 2 (Game 2 - Neon Surge) */}
+            {/* HOTSPOT 4: Cabinet 2 (Game 2 - Zombie Nyan Cat) */}
             <button
               type="button"
               className="hotspot hotspot--game-2"
-              onClick={() => handleGameClick("game-2")}
-              aria-label="Play Game 2: Neon Surge cabinet"
+              onClick={() => handleGameClick("zombie-nyan-cat")}
+              aria-label="Play Game 2: Zombie Nyan Cat cabinet"
             >
               <span className="hotspot-beacon">
                 <span className="beacon-dot beacon-dot--cyan" />
                 <span className="beacon-ping beacon-ping--cyan" />
               </span>
               <span className="hotspot-tooltip">
-                <span className="tooltip-tag">⚡ GAME 2</span>
-                <strong>Neon Surge</strong>
+                <span className="tooltip-tag">🐱 GAME 2</span>
+                <strong>Zombie Nyan Cat</strong>
                 <span className="tooltip-action">Click to Play →</span>
               </span>
             </button>

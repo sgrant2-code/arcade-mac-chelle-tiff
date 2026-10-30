@@ -2,12 +2,17 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { GraveShiftGame } from "@/components/grave-shift-game";
 import { games, getGame } from "@/lib/games";
-import { SpaceDefenderGame } from "@/components/games/space-defender-game";
-import { NeonSurgeGame } from "@/components/games/neon-surge-game";
-import { PixelMatrixGame } from "@/components/games/pixel-matrix-game";
+import { PlantsVsZombiesGame } from "@/components/plants-vs-zombies";
+import { ZombieNyanCatGame } from "@/components/zombie-nyan-cat";
 
 export function generateStaticParams() {
-  return games.map(({ slug }) => ({ slug }));
+  return [
+    { slug: "plants-vs-zombies" },
+    { slug: "zombie-nyan-cat" },
+    { slug: "game-1" },
+    { slug: "game-2" },
+    { slug: "game-3" },
+  ];
 }
 
 export default async function GamePage({ params }: { params: Promise<{ slug: string }> }) {
@@ -16,7 +21,7 @@ export default async function GamePage({ params }: { params: Promise<{ slug: str
 
   if (!game) notFound();
 
-  if (game.slug === "game-3") {
+  if (slug === "game-3") {
     return <GraveShiftGame />;
   }
 
@@ -33,7 +38,11 @@ export default async function GamePage({ params }: { params: Promise<{ slug: str
               key={g.slug}
               href={`/games/${g.slug}`}
               className={`cabinet-selector-pill ${
-                g.slug === slug ? "cabinet-selector-pill--active" : ""
+                g.slug === slug ||
+                (slug === "game-1" && g.slug === "plants-vs-zombies") ||
+                (slug === "game-2" && g.slug === "zombie-nyan-cat")
+                  ? "cabinet-selector-pill--active"
+                  : ""
               }`}
             >
               {g.marqueeLabel}
@@ -60,9 +69,8 @@ export default async function GamePage({ params }: { params: Promise<{ slug: str
 
         {/* Playable Game Simulator */}
         <div className="cabinet-screen-slot">
-          {slug === "game-1" && <SpaceDefenderGame />}
-          {slug === "game-2" && <NeonSurgeGame />}
-          {slug === "game-3" && <PixelMatrixGame />}
+          {(slug === "plants-vs-zombies" || slug === "game-1") && <PlantsVsZombiesGame />}
+          {(slug === "zombie-nyan-cat" || slug === "game-2") && <ZombieNyanCatGame />}
         </div>
       </div>
 

@@ -12,26 +12,26 @@ export type ArcadeGame = {
 
 export const games: ArcadeGame[] = [
   {
-    slug: "game-1",
-    title: "Space Defender",
-    tagline: "Blast the pixel alien armada before they reach Earth!",
-    description: "Classic retro arcade shoot 'em up. Defend the cosmos, rack up multiplier combos, and claim your tickets.",
-    accent: "pink",
+    slug: "plants-vs-zombies",
+    title: "Plants vs. Zombies",
+    tagline: "Defend your lawn against zombies with sun-powered plants!",
+    description: "Classic strategy tower defense. Plant sunflowers and peashooters, collect sun, and hold off the zombie horde.",
+    accent: "lime",
     marqueeLabel: "GAME 1",
-    icon: "👾",
-    category: "Space Shooter",
-    ticketRate: "10 tickets per 100 pts",
+    icon: "🌻",
+    category: "Tower Defense",
+    ticketRate: "5 tickets per zombie kill",
   },
   {
-    slug: "game-2",
-    title: "Neon Surge",
-    tagline: "Test your lightning-fast reflexes against cyber overloads!",
-    description: "High-octane reflex test. Tap the surging neon nodes before the capacitor blows up to earn ticket bonuses.",
+    slug: "zombie-nyan-cat",
+    title: "Zombie Nyan Cat",
+    tagline: "Guide the undead feline through the toxic void and eat brains!",
+    description: "Retro pixel-art endless runner. Leap across the graveyard, collect brains, avoid holy water, and ride the corrupted rainbow.",
     accent: "cyan",
     marqueeLabel: "GAME 2",
-    icon: "⚡",
-    category: "Reflex Action",
-    ticketRate: "5 tickets per wave",
+    icon: "🐱",
+    category: "Endless Runner",
+    ticketRate: "1 ticket per 5 brains",
   },
   {
     slug: "game-3",
@@ -47,5 +47,7 @@ export const games: ArcadeGame[] = [
 ];
 
 export function getGame(slug: string) {
+  if (slug === "game-1") return games.find((g) => g.slug === "plants-vs-zombies") || games[0];
+  if (slug === "game-2") return games.find((g) => g.slug === "zombie-nyan-cat") || games[1];
   return games.find((game) => game.slug === slug);
 }
