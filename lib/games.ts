@@ -10,15 +10,15 @@ export type ArcadeGame = {
  */
 export const games: ArcadeGame[] = [
   {
-    slug: "game-1",
-    title: "<game 1>",
-    description: "An arcade cabinet is warming up.",
-    accent: "pink",
+    slug: "plants-vs-zombies",
+    title: "Plants vs. Zombies",
+    description: "Defend your lawn against zombies with sun-powered plants!",
+    accent: "lime",
   },
   {
-    slug: "game-2",
-    title: "<game 2>",
-    description: "Insert creativity to begin.",
+    slug: "zombie-nyan-cat",
+    title: "Zombie Nyan Cat",
+    description: "Guide the undead feline through the toxic void and eat brains!",
     accent: "cyan",
   },
   {
