@@ -10,6 +10,17 @@ const WORLD_WIDTH = 1_940;
 const PLAYER_WIDTH = 32;
 const PLAYER_HEIGHT = 58;
 
+const SOUND_EFFECTS = {
+  start: { src: "/sounds/grave-shift/start.wav", volume: 0.28 },
+  jump: { src: "/sounds/grave-shift/jump.wav", volume: 0.3 },
+  lantern: { src: "/sounds/grave-shift/lantern.wav", volume: 0.26 },
+  stomp: { src: "/sounds/grave-shift/stomp.wav", volume: 0.28 },
+  respawn: { src: "/sounds/grave-shift/respawn.wav", volume: 0.22 },
+  finish: { src: "/sounds/grave-shift/finish.wav", volume: 0.3 },
+} as const;
+
+type SoundEffect = keyof typeof SOUND_EFFECTS;
+
 type Platform = { x: number; y: number; width: number; height?: number };
 type Collectible = { id: string; x: number; y: number };
 type Specter = { id: string; x: number; y: number; range: number; pace: number };
@@ -221,12 +232,20 @@ export function GraveShiftGame() {
   const messageRef = useRef(initialFrame().message);
   const [frame, setFrame] = useState<Frame>(initialFrame);
 
+  const playSound = useCallback((sound: SoundEffect) => {
+    const effect = SOUND_EFFECTS[sound];
+    const audio = new Audio(effect.src);
+    audio.volume = effect.volume;
+    void audio.play().catch(() => undefined);
+  }, []);
+
   const begin = useCallback(() => {
-    if (complete.current) return;
+    if (complete.current || run.current.started) return;
     run.current.started = true;
     messageRef.current = "Light the way — the gate is beyond the old pines.";
+    playSound("start");
     setFrame((current) => ({ ...current, started: true, message: messageRef.current }));
-  }, []);
+  }, [playSound]);
 
   const reset = useCallback(() => {
     run.current = newRun();
@@ -285,6 +304,7 @@ export function GraveShiftGame() {
       state.grounded = true;
       state.lives = Math.max(1, state.lives - 1);
       state.invulnerableUntil = performance.now() + 1_150;
+      playSound("respawn");
       draw(state, nextMessage, performance.now());
     };
 
@@ -305,6 +325,7 @@ export function GraveShiftGame() {
         if (keys.current.jumpQueued && state.grounded) {
           state.vy = -565;
           state.grounded = false;
+          playSound("jump");
         }
         keys.current.jumpQueued = false;
 
@@ -336,6 +357,7 @@ export function GraveShiftGame() {
             state.collected.add(lantern.id);
             state.score += 1;
             status = `${state.score} soul lantern${state.score === 1 ? "" : "s"} lit`;
+            playSound("lantern");
           }
         }
 
@@ -349,6 +371,7 @@ export function GraveShiftGame() {
               state.defeated.add(specter.id);
               state.vy = -305;
               status = "Specter cleared!";
+              playSound("stomp");
             } else {
               respawn(state, "A wisp sent you back to the last lantern.");
               status = messageRef.current;
@@ -367,6 +390,7 @@ export function GraveShiftGame() {
           state.vy = 0;
           status = "GRAVE SHIFT COMPLETE · 25 tickets found";
           addTickets(25);
+          playSound("finish");
         }
       }
 
@@ -386,7 +410,7 @@ export function GraveShiftGame() {
       window.removeEventListener("keyup", keyUp);
       cancelAnimationFrame(animationFrame);
     };
-  }, [addTickets, begin]);
+  }, [addTickets, begin, playSound]);
 
   const press = (control: "left" | "right" | "jump") => {
     begin();
