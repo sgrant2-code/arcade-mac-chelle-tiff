@@ -588,9 +588,11 @@ button {
 }
 
 .deck-card p {
+  font-family: "Press Start 2P", monospace;
   color: var(--muted);
-  font-size: 0.82rem;
-  line-height: 1.5;
+  font-size: 0.58rem;
+  line-height: 1.9;
+  letter-spacing: 0.015em;
   margin: 0 0 1.25rem;
   flex-grow: 1;
 }
